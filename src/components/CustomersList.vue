@@ -198,12 +198,12 @@ select {
 }
 
 .dropbtn {
-    
     background-color: white;
     position: relative;
     margin: 0px 0px 0px 30%;
     color: black;
     width: 70%;
+    min-width: 200px;
     border: none;
     cursor: pointer;
     padding: 12px;
@@ -218,6 +218,7 @@ select {
   position: absolute;
   padding: 5px;
   margin-top: 5px;
+  min-width: 200px;
   background-color: white;
   margin: 6px 0px 0px 30%;
   width: 70%;
