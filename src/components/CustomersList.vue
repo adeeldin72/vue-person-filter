@@ -130,8 +130,8 @@ export default {
 
 input[type="text"] {
   width: 100%;
-
-  padding: 0px 15px;
+  background: url('https://www.freeiconspng.com/uploads/magnifying-glass-icon-13.png') 1.5% / 2.5% no-repeat white;
+  padding: 0px 40px;
   height: 40px;
   border: none;
 }
@@ -141,6 +141,10 @@ select {
   border: none;
   padding: 0px 10px;
   height: 40px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url('../assets/dropTriangle.png') 97% / 2.5% no-repeat white;
 }
 
 .dot1,
