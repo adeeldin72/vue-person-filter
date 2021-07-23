@@ -264,11 +264,12 @@ select {
     .dropbtn { 
         margin: 0px 0px 0px 0px;
         width: 100%;
+        min-width: auto;
     }
     .dropdown-content { 
         margin: 5px 0px 0px 0px;
         width: 100%;
-
+        min-width: auto;
     }
     
 }
@@ -293,9 +294,6 @@ select {
         width: 70%;
   }
 
-  .selectInputContainer {
-    width: 70%;
-    margin-left: 30%;
-  }
+
 }
 </style>
