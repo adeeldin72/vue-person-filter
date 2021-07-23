@@ -22,7 +22,11 @@
                 <div v-for="customer in filteredCustomers" :key="customer.id" >
                     <Customer :data="customer"/>
                 </div>  
+                <div v-if="filteredCustomers.length === 0">
+                    <p>no customer(s) found with the search criteria.</p>
+                </div>
             </div>
+            
             <div v-else class = "loadingAnimation">
                 <h2>Loading Customers <span class='dot1'>.</span><span class='dot2'>.</span><span class='dot3'>.</span></h2>
             </div>
