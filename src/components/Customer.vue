@@ -7,7 +7,7 @@
         
         <div class="upperInfo">
             <div class="profileImageContainer">
-                <img :src="data.imgUrl" alt="" class = "profilePicture">
+                <img :src="data.imgUrl" :alt="'Profile for ' + data.name" class = "profilePicture">
             </div>
             <div class="profileHeading">
                 <p class = "customerName">{{data.name}}</p>
