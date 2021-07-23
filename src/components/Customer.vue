@@ -183,6 +183,7 @@ export default {
         
         .customer {
             margin: 10px;
+            min-height: auto;
             
         }
     }
