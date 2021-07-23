@@ -16,12 +16,12 @@
                   
               <div class="dropdown">
                 <button @click="runDropDown" class="dropbtn">Filter by Name (A-Z)</button>
-                <Card>
+                
                     <div id="myDropdown" class="dropdown-content" :class="{show: showDropDown}">
                         <button @click="sortCustomers('alphabetical')">Name (A-Z)</button>
                         <button @click="sortCustomers('reverseAlphabetical')">Name (Z-A)</button>
                     </div>
-                </Card>
+                
                
                 
           </div>
@@ -130,9 +130,7 @@ export default {
 .textInputContainer {
   grid-area: one;
 }
-.selectInputContainer {
-  
-}
+
 
 input[type="text"] {
   width: 100%;
@@ -198,9 +196,7 @@ select {
     transform: scale(1, 1) translateY(0);
   }
 }
-.selectInputContainer {
-    width: inherit;
-}
+
 .dropbtn {
     
     background-color: white;
