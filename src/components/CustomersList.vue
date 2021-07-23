@@ -13,14 +13,17 @@
               />
             </Card>
           </div>
-          <div class="selectInputContainer">
-            <Card>
-              <select v-model="sort" @change="sortCustomers">
-                <option disabled selected value>Filter by Name (A-Z)</option>
-                <option value="alphabetical">Name (A-Z)</option>
-                <option value="reverseAlphabetical">Name (Z-A)</option>
-              </select>
-            </Card>
+                  
+              <div class="dropdown">
+                <button @click="runDropDown" class="dropbtn">Filter by Name (A-Z)</button>
+                <Card>
+                    <div id="myDropdown" class="dropdown-content" :class="{show: showDropDown}">
+                        <button @click="sortCustomers('alphabetical')">Name (A-Z)</button>
+                        <button @click="sortCustomers('reverseAlphabetical')">Name (Z-A)</button>
+                    </div>
+                </Card>
+               
+                
           </div>
         </div>
         <div v-for="customer in filteredCustomers" :key="customer.id">
@@ -53,13 +56,12 @@ export default {
       name: "",
       customers: null,
       filteredCustomers: null,
-      sort: "",
+      showDropDown: false,
       customerUrl: "https://jsonplaceholder.typicode.com/users",
     };
   },
   methods: {
     filterCustomers() {
-      this.sort = "";
       this.filteredCustomers = this.customers.filter((value) => {
         const customerName = value.name;
         if (this.name.trim() === "") {
@@ -72,13 +74,14 @@ export default {
         return null;
       });
     },
-    sortCustomers() {
+    sortCustomers(value) {
       this.filteredCustomers.sort((a, b) =>
         a.name.toLowerCase().localeCompare(b.name.toLowerCase())
       );
-      if (this.sort === "reverseAlphabetical") {
+      if (value === "reverseAlphabetical") {
         this.filteredCustomers = this.filteredCustomers.reverse();
       }
+      this.runDropDown();
     },
     getImages() {
       //used to get images from faker because the provided api has no img links
@@ -86,6 +89,9 @@ export default {
         this.customers[i].imgUrl = faker.fake("{{image.avatar}}");
       }
     },
+    runDropDown() {
+        this.showDropDown = !this.showDropDown
+    }
   },
   mounted() {
     fetch(this.customerUrl)
@@ -125,7 +131,7 @@ export default {
   grid-area: one;
 }
 .selectInputContainer {
-  grid-area: two;
+  
 }
 
 input[type="text"] {
@@ -192,17 +198,78 @@ select {
     transform: scale(1, 1) translateY(0);
   }
 }
+.selectInputContainer {
+    width: inherit;
+}
+.dropbtn {
+    
+    background-color: white;
+    position: relative;
+    margin: 0px 0px 0px 30%;
+    color: black;
+    width: 70%;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    font-size: 16px;
+    text-align: left;
+    background: url('../assets/dropTriangle.png') 95% / 12px no-repeat white;
+    border-radius: 12px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  padding: 5px;
+  margin-top: 5px;
+  background-color: white;
+  margin: 6px 0px 0px 30%;
+  width: 70%;
+  overflow: auto;
+  z-index: 100;
+  border-radius: 12px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+}
+
+.dropdown {
+  grid-area: two;
+  position: relative;
+  display: inline-block;
+}
+
+
+.dropdown-content button {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  background: white;
+  border-radius: 5px;
+  border: none;
+  
+}
+
+.dropdown button:hover {background: #F6F6F7;}
+
+.show {display: block;}
 
 @media only screen and (max-width: 900px) {
-  .customerListOptions {
-    display: grid;
-    grid-template-columns: 1.2fr 0.5fr 1fr;
-    grid-template-rows: 1fr;
-    gap: 0px 0px;
-    grid-template-areas: "one . two";
-    width: 100%;
-    margin: 50px 10px;
-  }
+    .customerListOptions {
+        display: grid;
+        grid-template-columns: 1.2fr 0.5fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 0px 0px;
+        grid-template-areas: "one . two";
+        width: 100%;
+        margin: 50px 10px;
+    }
+    .dropbtn, .dropdown-content { 
+        margin: 0px 0px 0px 0px;
+        width: 100%;
+
+    }
+    
 }
 
 @media only screen and (max-width: 600px) {
@@ -216,7 +283,11 @@ select {
       "two";
     margin: 50px 10px;
   }
+  .dropbtn, .dropdown-content { 
+        margin: 0px 0px 0px 30%;
+        width: 70%;
 
+    }
   .selectInputContainer {
     width: 70%;
     margin-left: 30%;
